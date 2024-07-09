@@ -35,10 +35,11 @@ app.get('/webhook', function(req, response){
  
   try {
     
-    if(req.query['hub.verify_token'] === config.tokenWebhook){
-      response.send(req.query['hub.challenge']);
+    if(req.query["hub.mode"] ==="subscribe" && req.query['hub.verify_token'] === config.tokenWebhook){
+      response.status(200).send(req.query['hub.challenge']);
    } else {
-      response.send(' Violacion.No tienes permisos.')
+      console.log('Verificar el token del webhook');
+      response.status(403).send(' Violacion.No tienes permisos.')
    }
     
   } catch (error) {
