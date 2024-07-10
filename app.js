@@ -327,15 +327,14 @@ async function Listening(){
     const client = await getConnection();
 
     const rta =
-      await client.query(`SELECT oc.c_order_id As DocT,oc.documentno,oc.created, oc.user1_id, awfp.ad_wf_process_id, awfa.ad_wf_activity_id, awfa.ad_table_id, awfp.record_id, awfp.processed, awfa.ad_wf_responsible_id, au.name AS user, au.email, au.phone,oc.ad_client_id,oc.ad_org_id,oc.createdby, oc.isapproved as Aprobada, oc.docstatus AS Status,oc.totallines AS monto,oc.description, cc.name AS ccosto, ccu.iso_code as moneda
+      await client.query(`SELECT oc.c_order_id As DocT,oc.documentno,oc.created, oc.user1_id, awfp.ad_wf_process_id, awfa.ad_wf_activity_id, awfa.ad_table_id, awfp.record_id, awfp.processed, awfa.ad_wf_responsible_id, au.name AS user, au.email, au.phone,oc.ad_client_id,oc.ad_org_id,oc.createdby, oc.isapproved as Aprobada, oc.docstatus AS Status,oc.totallines AS monto,oc.description, cc.name AS ccosto
 
   FROM ad_wf_process  AS awfp 
   JOIN ad_wf_activity AS awfa ON awfa.ad_wf_process_id = awfp.ad_wf_process_id
   join ad_wf_node as awfn on awfa.ad_wf_node_id = awfn.ad_wf_node_id 
   JOIN ad_user        AS au   ON au.ad_user_id = awfa.ad_user_id
   JOIN c_order        AS oc   ON awfp.record_id = oc.c_order_id
-  join c_elementvalue as cc on oc.user1_id=cc.c_elementvalue_id
-  JOIN c_currency as ccu on oc.c_currency_id = ccu.c_currency_id
+  join c_elementvalue as cc on oc.user1_id=cc.c_elementvalue_id  
   WHERE awfp.wfstate= '${WfState}'
   and awfa.wfstate= '${WfState}'
   and awfa.processed = '${processed}'
@@ -345,15 +344,13 @@ async function Listening(){
 
   UNION
 
-  SELECT req.m_requisition_id As DocT,req.documentno,req.created, req.user1_id, awfp.ad_wf_process_id, awfa.ad_wf_activity_id, awfa.ad_table_id, awfp.record_id, awfp.processed, awfa.ad_wf_responsible_id, au.name AS user, au.email, au.phone,req.ad_client_id,req.ad_org_id,req.createdby, req.isapproved as Aprobada, req.docstatus AS Status,req.totallines AS monto,req.description, cc.name AS ccosto, ccu.iso_code as moneda
-
+  SELECT req.m_requisition_id As DocT,req.documentno,req.created, req.user1_id, awfp.ad_wf_process_id, awfa.ad_wf_activity_id, awfa.ad_table_id, awfp.record_id, awfp.processed, awfa.ad_wf_responsible_id, au.name AS user, au.email, au.phone,req.ad_client_id,req.ad_org_id,req.createdby, req.isapproved as Aprobada, req.docstatus AS Status,req.totallines AS monto,req.description, cc.name AS ccosto
   FROM ad_wf_process  AS awfp 
   JOIN ad_wf_activity AS awfa ON awfa.ad_wf_process_id = awfp.ad_wf_process_id
   join ad_wf_node as awfn on awfa.ad_wf_node_id = awfn.ad_wf_node_id 
   JOIN ad_user        AS au   ON au.ad_user_id = awfa.ad_user_id
   JOIN m_requisition        AS req   ON awfp.record_id = req.m_requisition_id
   join c_elementvalue as cc on req.user1_id=cc.c_elementvalue_id
-  JOIN c_currency as ccu on req.c_currency_id = ccu.c_currency_id
   WHERE awfp.wfstate= '${WfState}'
   and awfa.wfstate= '${WfState}'
   and awfa.processed = '${processed}'
