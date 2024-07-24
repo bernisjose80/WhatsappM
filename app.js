@@ -316,7 +316,7 @@ async function Listening(){
     const Table = 259;
     const Table2 = 702;
     const SendNoti = "Y";
-    const adclient = 1000000;
+    const adclient = 1000002;
 
     const ResId = 101;
     let SendOn = 0;
