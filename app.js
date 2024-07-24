@@ -381,7 +381,7 @@ async function Listening(){
           description = rta.rows[i].description || ' ' ;          
           description = description.split("\n").join("");          
           description = description.substring(0,80);          
-          moneda = rta.rows[i].moneda; 
+          moneda = 'USD'; 
           //console.log(documentno);
           SendOn = await SelectBd(record_id, ad_wf_activity_id);
           //console.log(SendOn);
