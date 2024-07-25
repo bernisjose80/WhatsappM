@@ -490,7 +490,7 @@ function callSendApi(NroPhone,NroReq,NroUser,NroAct,NroTab,NroOrg,NroClient,DocN
      // if (error) throw new Error(error);                
           
           try {
-           //console.log(response.body); 
+            console.log(response.body); 
             const updatedby = 104;
             let data = JSON.parse(response.body);    
             let mssg = (data.messages[0].id);
