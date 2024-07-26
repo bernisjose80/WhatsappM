@@ -437,8 +437,7 @@ async function Listening(){
 
 
 function callSendApi(NroPhone,NroReq,NroUser,NroAct,NroTab,NroOrg,NroClient,DocNo,NamU,Ccosto,Amount,Descr,Moneda) {  
-   console.log('entro a sendapi');
-   
+  
    var options = {
       'method': 'POST',
       'url': config.urlApi,
@@ -461,23 +460,23 @@ function callSendApi(NroPhone,NroReq,NroUser,NroAct,NroTab,NroOrg,NroClient,DocN
               "parameters": [
                {
                   "type": "text",
-                "text": DocNo
+                  "text": "Uno"
                 },
                 {
                   "type": "text",
-                  "text": NamU
+                  "text": "Dos"
                 },
                 {
                   "type": "text",
-                  "text": Ccosto
+                  "text": "Tres"
                 },
                 {
                   "type": "text",
-                  "text": Descr
+                  "text": " "
                 },
                 {
                   "type": "text",
-                  "text": Amount + ' ' +  Moneda
+                  "text": "0 USD"
                 }
 
               ]
@@ -489,24 +488,23 @@ function callSendApi(NroPhone,NroReq,NroUser,NroAct,NroTab,NroOrg,NroClient,DocN
     };   
    
     request(options, function (error, response) {
-      console.log(options);
+      console.log('entro a request');
      // if (error) throw new Error(error);                
           
-          try {
-            console.log(response.body); 
+         try {
+            
             const updatedby = 104;
-            let data = JSON.parse(response.body);   
-            console.log('llego aqui'); 
+            let data = JSON.parse(response.body);               
             let mssg = (data.messages[0].id);
             let codorder = (NroReq);
-            const estado = 'sent';
+           const estado = 'sent';
             UpdateBotw(codorder, NroAct,updatedby);
-            InsertBotW(estado,codorder,mssg,NroUser,NroAct,NroTab,NroOrg,NroClient,DocNo);
+           InsertBotW(estado,codorder,mssg,NroUser,NroAct,NroTab,NroOrg,NroClient,DocNo);
 
           } catch (error) {
            
             console.error(error);            
-            console.log('Ocurrio un error se esta reiniciando la app ...');
+           console.log('Ocurrio un error se esta reiniciando la app ...');
          }
           
        
