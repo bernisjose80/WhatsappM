@@ -177,7 +177,7 @@ app.listen(app.get('port'), function(){
 
   try {
     
-    setInterval (Listening, 180000);
+    setInterval (Listening, 60000);
 
     console.log('Nuestro servidor esta funcionando en el puerto', app.get('port'));
     
@@ -365,6 +365,8 @@ async function Listening(){
       let i = 0;
 
       while (i < rta.rowCount) {
+
+        console.log(rta.rows[i].phone);
         
         if (rta.rows[i].phone != null) {
           
@@ -490,7 +492,7 @@ function callSendApi(NroPhone,NroReq,NroUser,NroAct,NroTab,NroOrg,NroClient,DocN
      // if (error) throw new Error(error);                
           
           try {
-            console.log(response.body); 
+            //console.log(response.body); 
             const updatedby = 104;
             let data = JSON.parse(response.body);    
             let mssg = (data.messages[0].id);
