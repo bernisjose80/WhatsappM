@@ -386,13 +386,13 @@ async function Listening(){
           moneda = 'USD'; 
           //console.log(documentno);
           SendOn = await SelectBd(record_id, ad_wf_activity_id);
-          //console.log(SendOn);
+          console.log(SendOn);
 
           let resent_id = await SelectResent(record_id, ad_wf_activity_id);
 
           if (SendOn === 0 || resent_id > 0) {
             //console.log(rta.rows[i].phone);
-            //console.log(documentno);
+             console.log(documentno);
             //console.log(user);
            // console.log(c_costo);
             //console.log(description);
@@ -437,7 +437,7 @@ async function Listening(){
 
 
 function callSendApi(NroPhone,NroReq,NroUser,NroAct,NroTab,NroOrg,NroClient,DocNo,NamU,Ccosto,Amount,Descr,Moneda) {  
-   
+   console.log('entro a sendapi');
    
    var options = {
       'method': 'POST',
@@ -489,6 +489,7 @@ function callSendApi(NroPhone,NroReq,NroUser,NroAct,NroTab,NroOrg,NroClient,DocN
     };   
    
     request(options, function (error, response) {
+      console.log(options);
      // if (error) throw new Error(error);                
           
           try {
