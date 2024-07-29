@@ -489,6 +489,7 @@ function callSendApi(NroPhone,NroReq,NroUser,NroAct,NroTab,NroOrg,NroClient,DocN
    
     request(options, function (error, response) {
       console.log('entro a request');
+      console.log(response.body);
      // if (error) throw new Error(error);                
           
          try {
