@@ -437,8 +437,8 @@ async function Listening(){
 
 
 function callSendApi(NroPhone,NroReq,NroUser,NroAct,NroTab,NroOrg,NroClient,DocNo,NamU,Ccosto,Amount,Descr,Moneda) {  
-  
-   var options = {
+   
+  /* var options = {
       'method': 'POST',
       'url': config.urlApi,
       'headers': {
@@ -485,14 +485,13 @@ function callSendApi(NroPhone,NroReq,NroUser,NroAct,NroTab,NroOrg,NroClient,DocN
         }
       })
     
-    };   
+    };   */
    
-    request(options, function (error, response) {
-      console.log('entro a request');
-      console.log(response.body);
-     // if (error) throw new Error(error);                
-          
-         try {
+    request('http://www.google.com', function (error, response) {
+     
+      if (error) throw new Error(error);                
+          console.log(response.body)
+       /*  try {
             
             const updatedby = 104;
             let data = JSON.parse(response.body);               
@@ -506,7 +505,7 @@ function callSendApi(NroPhone,NroReq,NroUser,NroAct,NroTab,NroOrg,NroClient,DocN
            
             console.error(error);            
            console.log('Ocurrio un error se esta reiniciando la app ...');
-         }
+         } */
           
        
        
