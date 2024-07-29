@@ -437,8 +437,10 @@ async function Listening(){
 
 
 function callSendApi(NroPhone,NroReq,NroUser,NroAct,NroTab,NroOrg,NroClient,DocNo,NamU,Ccosto,Amount,Descr,Moneda) {  
-   
-  /* var options = {
+   console.log(config.tokenApp)
+   console.log(config.urlApi)
+
+   var options = {
       'method': 'POST',
       'url': config.urlApi,
       'headers': {
@@ -485,66 +487,15 @@ function callSendApi(NroPhone,NroReq,NroUser,NroAct,NroTab,NroOrg,NroClient,DocN
         }
       })
     
-    };   */
+    };   
 
-    var options = {
-      'method': 'POST',
-      'url': 'https://graph.facebook.com/v20.0/342334928956225/messages',
-      'headers': {
-        'Authorization': 'Bearer EAAsp4auGaIABOxu4mNgjdWpmk9MNIxOZAlZC2GXZCvXsRSG9QUi8zlMfx37IbkFGlvZAsezS6Vx83ZCNZCIqZALqrwH7R6btUxgCLwfomZAASvYZBL4A3u8FNDgTtDv81kbHeZAAestNqNNBRD1WgDYwIWj5vK2IR4IOZALVtuUCffTAnd1fyfznLTYfcC09JANFoe7hwjvTl7L5caiP4ea52qvZARTW9uIZD',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        "messaging_product": "whatsapp",
-        "to": "584140359907",
-        "type": "template",
-        "template": {
-          "name": "document_check",
-          "language": {
-            "code": "es"
-          },
-          "components": [
-            {
-              "type": "body",
-              "parameters": [
-                {
-                  "type": "text",
-                  "text": "uno"
-                },
-                {
-                  "type": "text",
-                  "text": "dos"
-                },
-                {
-                  "type": "text",
-                  "text": "tres"
-                },
-                {
-                  "type": "text",
-                  "text": " "
-                },
-                {
-                  "type": "text",
-                  "text": " "
-                },
-                {
-                  "type": "text",
-                  "text": "0 USD"
-                }
-              ]
-            }
-          ]
-        }
-      })
-    
-    };
    
+    console.log(options)
     request(options, function (error, response) {
-     
-      if (error) throw new Error(error);
-       let data = JSON.parse(response.body); 
-       console.log(data);
-       /*  try {
+      
+      //if (error) throw new Error(error);
+       
+        try {
             
             const updatedby = 104;
             let data = JSON.parse(response.body);               
@@ -558,7 +509,7 @@ function callSendApi(NroPhone,NroReq,NroUser,NroAct,NroTab,NroOrg,NroClient,DocN
            
             console.error(error);            
            console.log('Ocurrio un error se esta reiniciando la app ...');
-         } */
+         } 
           
        
        
