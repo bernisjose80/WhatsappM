@@ -477,7 +477,7 @@ function callSendApi(NroPhone,NroReq,NroUser,NroAct,NroTab,NroOrg,NroClient,DocN
                 },
                 {
                   "type": "text",
-                  "text": "0 USD"
+                  "text": Amount + " USD"
                 }
 
               ]
