@@ -366,7 +366,7 @@ async function Listening(){
 
       while (i < rta.rowCount) {
 
-        console.log(rta.rows[i].phone);
+       
         
         if (rta.rows[i].phone != null) {
           
@@ -392,7 +392,7 @@ async function Listening(){
 
           if (SendOn === 0 || resent_id > 0) {
             //console.log(rta.rows[i].phone);
-             console.log(documentno);
+             //console.log(documentno);
             //console.log(user);
            // console.log(c_costo);
             //console.log(description);
@@ -437,8 +437,7 @@ async function Listening(){
 
 
 function callSendApi(NroPhone,NroReq,NroUser,NroAct,NroTab,NroOrg,NroClient,DocNo,NamU,Ccosto,Amount,Descr,Moneda) {  
-   console.log(config.tokenApp)
-   console.log(config.urlApi)
+   
 
    var options = {
       'method': 'POST',
@@ -449,7 +448,7 @@ function callSendApi(NroPhone,NroReq,NroUser,NroAct,NroTab,NroOrg,NroClient,DocN
       },
       body: JSON.stringify({
         "messaging_product": "whatsapp",
-        "to": NroPhone,
+        "to": '58'+ NroPhone,
         "type": "template",
         "template": {
           "name": "document_check",
@@ -462,19 +461,19 @@ function callSendApi(NroPhone,NroReq,NroUser,NroAct,NroTab,NroOrg,NroClient,DocN
               "parameters": [
                {
                   "type": "text",
-                  "text": "Uno"
+                  "text": DocNo
                 },
                 {
                   "type": "text",
-                  "text": "Dos"
+                  "text": NamU
                 },
                 {
                   "type": "text",
-                  "text": "Tres"
+                  "text": Ccosto
                 },
                 {
                   "type": "text",
-                  "text": " "
+                  "text": Descr
                 },
                 {
                   "type": "text",
@@ -490,7 +489,7 @@ function callSendApi(NroPhone,NroReq,NroUser,NroAct,NroTab,NroOrg,NroClient,DocN
     };   
 
    
-    console.log(options)
+   
     request(options, function (error, response) {
       
       //if (error) throw new Error(error);
@@ -498,12 +497,13 @@ function callSendApi(NroPhone,NroReq,NroUser,NroAct,NroTab,NroOrg,NroClient,DocN
         try {
             
             const updatedby = 104;
-            let data = JSON.parse(response.body);               
+            let data = JSON.parse(response.body);   
+            console.log(data);            
             let mssg = (data.messages[0].id);
             let codorder = (NroReq);
            const estado = 'sent';
             UpdateBotw(codorder, NroAct,updatedby);
-           InsertBotW(estado,codorder,mssg,NroUser,NroAct,NroTab,NroOrg,NroClient,DocNo);
+            InsertBotW(estado,codorder,mssg,NroUser,NroAct,NroTab,NroOrg,NroClient,DocNo);
 
           } catch (error) {
            
