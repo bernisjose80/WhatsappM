@@ -177,7 +177,7 @@ app.listen(app.get('port'), function(){
 
   try {
     
-    setInterval (Listening, 60000);
+    setInterval (Listening, 180000);
 
     console.log('Nuestro servidor esta funcionando en el puerto', app.get('port'));
     
@@ -386,7 +386,7 @@ async function Listening(){
           moneda = 'USD'; 
           //console.log(documentno);
           SendOn = await SelectBd(record_id, ad_wf_activity_id);
-          console.log(SendOn);
+          //console.log(SendOn);
 
           let resent_id = await SelectResent(record_id, ad_wf_activity_id);
 
@@ -497,8 +497,7 @@ function callSendApi(NroPhone,NroReq,NroUser,NroAct,NroTab,NroOrg,NroClient,DocN
         try {
             
             const updatedby = 104;
-            let data = JSON.parse(response.body);   
-            console.log(data);            
+            let data = JSON.parse(response.body);                     
             let mssg = (data.messages[0].id);
             let codorder = (NroReq);
            const estado = 'sent';
