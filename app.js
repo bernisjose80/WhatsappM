@@ -497,7 +497,8 @@ function callSendApi(NroPhone,NroReq,NroUser,NroAct,NroTab,NroOrg,NroClient,DocN
         try {
             
             const updatedby = 104;
-            let data = JSON.parse(response.body);                     
+            let data = JSON.parse(response.body);     
+            console.log(data);                
             let mssg = (data.messages[0].id);
             let codorder = (NroReq);
            const estado = 'sent';
